@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# environment variables
+.env
+
+# logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+logs/
+*.log
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# coverage / tests
+coverage/
+
+# misc
+*.tmp
