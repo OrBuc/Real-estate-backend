@@ -19,7 +19,7 @@ export async function createProperty(req, res) {
     console.log("req.user:", req.user);
     console.log("req.body:", req.body);
     console.log("req.headers.authorization:", req.headers.authorization);
-    
+
     // בדיקה שהמשתמש מאומת
     if (!req.user || !req.user.userId) {
       console.log("❌ No user authentication found");
@@ -29,10 +29,10 @@ export async function createProperty(req, res) {
     // המשתמש המאומת מגיע מ-middleware
     const userId = req.user.userId;
     console.log("✅ Creating property for user:", userId);
-    
+
     const property = await Property.create({ ...req.body, userId });
     console.log("✅ Property created:", property._id);
-    
+
     res.status(201).json(property);
   } catch (error) {
     console.error("❌ Error creating property:", error);
@@ -45,7 +45,7 @@ export async function createProperty(req, res) {
 export async function updateProperty(req, res) {
   try {
     const property = await Property.findById(req.params.id);
-    
+
     if (!property) {
       return res.status(404).json({ message: "Property not found" });
     }
@@ -55,11 +55,9 @@ export async function updateProperty(req, res) {
       return res.status(403).json({ message: "Not authorized" });
     }
 
-    const updated = await Property.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
+    const updated = await Property.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     res.json(updated);
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
@@ -70,7 +68,7 @@ export async function updateProperty(req, res) {
 export async function deleteProperty(req, res) {
   try {
     const property = await Property.findById(req.params.id);
-    
+
     if (!property) {
       return res.status(404).json({ message: "Property not found" });
     }

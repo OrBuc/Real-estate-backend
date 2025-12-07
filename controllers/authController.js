@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 export async function registerUser(req, res) {
   try {
     const { name, email, password } = req.body;
-    
+
     // בדיקת שדות חובה
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Missing fields" });
@@ -31,7 +31,7 @@ export async function registerUser(req, res) {
 
     res.status(201).json({
       token,
-      user: { id: user._id, name: user.name, email: user.email }
+      user: { id: user._id, name: user.name, email: user.email },
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
@@ -63,7 +63,7 @@ export async function loginUser(req, res) {
 
     res.json({
       token,
-      user: { id: user._id, name: user.name, email: user.email }
+      user: { id: user._id, name: user.name, email: user.email },
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });

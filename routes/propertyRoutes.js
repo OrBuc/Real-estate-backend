@@ -1,5 +1,10 @@
 import { Router } from "express";
-import { getProperties, createProperty, updateProperty, deleteProperty } from "../controllers/propertyController.js";
+import {
+  getProperties,
+  createProperty,
+  updateProperty,
+  deleteProperty,
+} from "../controllers/propertyController.js";
 import { authenticateToken } from "../middleware/auth.js";
 
 const router = Router();
